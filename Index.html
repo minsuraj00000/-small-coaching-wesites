@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayfare Academy | Coaching Centre</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #0d6efd;
+            --primary-dark: #0a58ca;
+            --secondary-color: #20c997;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --gray-color: #6c757d;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--dark-color);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Utility Classes */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-primary { background: var(--primary-color); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-success { background: var(--secondary-color); color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-sm { padding: 5px 10px; font-size: 0.85rem; }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-title h2 { font-size: 2.2rem; color: #111; }
+        .section-title p { color: var(--gray-color); }
+
+        /* Header & Navbar */
+        header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        .logo i { margin-right: 8px; }
+
+        /* Navigation Links (Desktop) */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* Hamburger Menu Icon (Hidden on Desktop) */
+        .hamburger {
+            display: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--dark-color);
+        }
+
+        /* Responsive Mobile Navigation Styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block; /* Mobile par 3 lines dikhenge */
+            }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-in-out, padding 0.3s ease;
+            }
+            .nav-links.active {
+                max-height: 300px; /* Toggle open behavior */
+                padding: 15px 0;
+                border-top: 1px solid #eee;
+            }
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+                margin: 10px 0;
+            }
+            .hero h1 { font-size: 2.2rem; }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(13, 110, 253, 0.85), rgba(10, 88, 202, 0.85)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; }
+
+        /* Features Section */
+        .features { padding: 60px 0; background: var(--light-color); }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        .card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px; }
+        .card h3 { margin-bottom: 10px; }
+
+        /* Courses Section */
+        .courses { padding: 60px 0; }
+        .course-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid #eee;
+        }
+        .course-card img { width: 100%; height: 180px; object-fit: cover; }
+        .course-info { padding: 20px; }
+        .course-info h3 { margin-bottom: 10px; }
+        .course-info p { color: var(--gray-color); margin-bottom: 15px; font-size: 0.95rem; }
+
+        /* Admission Section */
+        .contact { padding: 60px 0; background: var(--light-color); }
+        .contact-flex { display: flex; flex-wrap: wrap; gap: 40px; }
+        .contact-info, .admission-form { flex: 1; min-width: 300px; }
+        .form-group { margin-bottom: 15px; }
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+        .form-control:focus { border-color: var(--primary-color); }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        /* Modal / Admin Login Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Admin Dashboard View */
+        #admin-panel {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #f4f6f9;
+            z-index: 3000;
+            overflow-y: auto;
+        }
+        .admin-header {
+            background: var(--dark-color);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-container { padding: 30px; }
+        .table-responsive { overflow-x: auto; background: white; border-radius: 8px; box-shadow: var(--shadow); }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 12px 15px; border-bottom: 1px solid #ddd; }
+        th { background: #e9ecef; }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container navbar">
+            <div class="logo"><i class="fa-solid fa-graduation-cap"></i> Wayfare Academy</div>
+            
+            <!-- Three Lines (Hamburger Icon) for Mobile -->
+            <div class="hamburger" id="hamburger-btn" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <!-- Nav Links -->
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" onclick="closeMenu()">Home</a></li>
+                <li><a href="#courses" onclick="closeMenu()">Courses</a></li>
+                <li><a href="#admission" onclick="closeMenu()">Admission</a></li>
+                <li><button class="btn btn-primary" onclick="openLoginModal(); closeMenu();"><i class="fa-solid fa-user"></i> Login</button></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Aapke Ujjwal Bhavishya Ki Shuruaat</h1>
+            <p>IIT-JEE, NEET, Board Exams aur Competitive Exams ke liye best coaching classes.</p>
+            <a href="#admission" class="btn btn-success">Apply For Admission</a>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="features">
+        <div class="container grid-3">
+            <div class="card">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <h3>Expert Faculty</h3>
+                <p>Anubhavi aur qualified teachers dwara behtareen shiksha.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-book-open"></i>
+                <h3>Study Material</h3>
+                <p>Har subject ke liye top quality notes aur test series.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-trophy"></i>
+                <h3>Best Results</h3>
+                <p>Har saal top ranks dene wala trusted coaching institute.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Popular Courses</h2>
+                <p>Apne career ke hisaab se sahi course chunein</p>
+            </div>
+            <div class="grid-3" id="course-list">
+                <!-- Dynamic Courses rendered via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Section -->
+    <section class="contact" id="admission">
+        <div class="container">
+            <div class="section-title">
+                <h2>Online Admission Enquiry</h2>
+                <p>Form bharein aur hamari team aapko contact karegi</p>
+            </div>
+            <div class="contact-flex">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p style="margin-top: 10px;"><i class="fa-solid fa-location-dot"></i> Main Road, Coaching Hub, City</p>
+                    <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fa-solid fa-envelope"></i> info@Wayfareacademy.com</p>
+                </div>
+                <div class="admission-form card">
+                    <form id="enquiryForm" onsubmit="handleAdmissionSubmit(event)">
+                        <div class="form-group">
+                            <input type="text" id="stdName" class="form-control" required placeholder="Full Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="stdPhone" class="form-control" required placeholder="Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <select id="stdCourse" class="form-control" required>
+                                <option value="">Select Course</option>
+                                <option value="Class 10th Board">Class 10th Board</option>
+                                <option value="IIT-JEE Foundation">IIT-JEE Foundation</option>
+                                <option value="NEET Medical">NEET Medical</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Form</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Wayfare Academy. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeLoginModal()">&times;</span>
+            <h3 style="margin-bottom: 20px; text-align: center;">Login</h3>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <input type="text" id="username" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" class="form-control" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard (Overlay Panel) -->
+    <div id="admin-panel">
+        <div class="admin-header">
+            <h2><i class="fa-solid fa-user-gear"></i> Coaching Admin Dashboard</h2>
+            <button class="btn btn-danger btn-sm" onclick="logoutAdmin()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+        </div>
+        <div class="admin-container">
+            <h3>Student Admission Enquiries (<span id="total-count">0</span>)</h3>
+            <br>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Student Name</th>
+                            <th>Phone</th>
+                            <th>Course</th>
+                            <th>Date & Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-table-body">
+                        <!-- Dynamic Student Data -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Navbar Toggle Functionality for Mobile
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const icon = document.querySelector('#hamburger-btn i');
+            navLinks.classList.toggle('active');
+            
+            // Icon Change (Bars to X)
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const icon = document.querySelector('#hamburger-btn i');
+            if(navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // Default Courses Data
+        const coursesData = [
+            {
+                title: "Class 10th Board Booster",
+                image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=500&q=80",
+                desc: "Complete syllabus coverage with sample papers and weekly tests."
+            },
+            {
+                title: "IIT-JEE (Main + Advanced)",
+                image: "https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?auto=format&fit=crop&w=500&q=80",
+                desc: "Intensive training by IITians with dedicated doubt removal classes."
+            },
+            {
+                title: "NEET Medical Preparation",
+                image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=500&q=80",
+                desc: "Focused coaching on Biology, Physics, and Chemistry for top ranks."
+            }
+        ];
+
+        // Render Courses
+        function renderCourses() {
+            const courseList = document.getElementById('course-list');
+            courseList.innerHTML = coursesData.map(c => `
+                <div class="course-card">
+                    <img src="${c.image}" alt="${c.title}">
+                    <div class="course-info">
+                        <h3>${c.title}</h3>
+                        <p>${c.desc}</p>
+                        <a href="#admission" class="btn btn-primary btn-sm">Enroll Now</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Handle Admission Form Submission
+        function handleAdmissionSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('stdName').value;
+            const phone = document.getElementById('stdPhone').value;
+            const course = document.getElementById('stdCourse').value;
+            const date = new Date().toLocaleString();
+
+            const newEnquiry = { id: Date.now(), name, phone, course, date };
+
+            let enquiries = JSON.parse(localStorage.getItem('student_enquiries') || '[]');
+            enquiries.push(newEnquiry);
+            localStorage.setItem('student_enquiries', JSON.stringify(enquiries));
+
+            alert("Aapka Enquiry Form successfully submit ho gaya hai! Team aapse jald hi sampark karegi.");
+            document.getElementById('enquiryForm').reset();
+        }
+
+        // Login Modal Controls
+        function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; }
+        function closeLoginModal() { document.getElementById('loginModal').style.display = 'none'; }
+
+        // Handle Login Authentication
+        function handleLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+
+            // Default credentials: admin / admin123
+            if(u === 'admin' && p === 'admin123') {
+                closeLoginModal();
+                showAdminDashboard();
+            } else {
+                alert('Invalid Username or Password! (Default: admin / admin123)');
+            }
+        }
+
+        // Admin Dashboard Controls
+        function showAdminDashboard() {
+            document.getElementById('admin-panel').style.display = 'block';
+            loadAdminData();
+        }
+
+        function logoutAdmin() {
+            document.getElementById('admin-panel').style.display = 'none';
+        }
+
+        // Load Enquiries in Admin Table
+        function loadAdminData() {
+            let enquiries = JSON.parse(localStorage.getItem('student_enquiries') || '[]');
+            document.getElementById('total-count').innerText = enquiries.length;
+
+            const tbody = document.getElementById('admin-table-body');
+            if(enquiries.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">Koi Enquiry data nahi mila.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = enquiries.map((item, index) => `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td><strong>${item.name}</strong></td>
+                    <td>${item.phone}</td>
+                    <td><span class="btn btn-primary btn-sm">${item.course}</span></td>
+                    <td>${item.date}</td>
+                    <td><button class="btn btn-danger btn-sm" onclick="deleteEnquiry(${item.id})"><i class="fa-solid fa-trash"></i> Delete</button></td>
+                </tr>
+            `).join('');
+        }
+
+        // Delete Entry
+        function deleteEnquiry(id) {
+            if(confirm('Kya aap is student data ko delete karna chahte hain?')) {
+                let enquiries = JSON.parse(localStorage.getItem('student_enquiries') || '[]');
+                enquiries = enquiries.filter(item => item.id !== id);
+                localStorage.setItem('student_enquiries', JSON.stringify(enquiries));
+                loadAdminData();
+            }
+        }
+
+        // Init App
+        window.onload = function() {
+            renderCourses();
+        };
+    </script>
+</body>
+</html>
+                    
